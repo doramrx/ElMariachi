@@ -7,7 +7,8 @@
         "doc": "docs"
     },
     "scripts": {
-        "dev": "tsc; node dist/main.js"
+        "build": "tsc; rm -rf public/js; mkdir -p public/js;cp -r dist/* public/js",
+        "dev": "node dist/main.js"
     },
     "keywords": [],
     "author": "",

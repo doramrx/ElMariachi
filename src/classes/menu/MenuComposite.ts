@@ -1,16 +1,5 @@
-import { Product } from "./food";
-
-interface FoodComponent {
-    getItem(): Product[] | Product;
-}
-
-export class MenuItem implements FoodComponent {
-    constructor(private food: Product) {}
-
-    getItem(): Product {
-        return this.food;
-    }
-}
+import { Product } from "../food/Product.js";
+import { FoodComponent } from "./FoodComponent.js";
 
 export class MenuComposite implements FoodComponent {
     private children: FoodComponent[] = [];
