@@ -7,8 +7,9 @@ export class BurritoFactory implements FoodFactory {
         name: string,
         protein: string,
         ingredients: string[],
-        price: number
+        price: number,
+        imgUrl: string
     ): Food {
-        return new Burrito(name, protein, ingredients, price);
+        return new Burrito(name, protein, ingredients, price, imgUrl);
     }
 }

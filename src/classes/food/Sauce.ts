@@ -6,12 +6,9 @@ export class Sauce extends Product {
         ingredients: string[],
         price: number,
         private quantityInMililiters: number,
-        private isSpicy: boolean
+        private isSpicy: boolean,
+        imgUrl: string
     ) {
-        super(name, price, ingredients);
-    }
-
-    getName(): string {
-        return super.name;
+        super(name, price, ingredients, imgUrl);
     }
 }

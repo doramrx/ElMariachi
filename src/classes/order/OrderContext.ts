@@ -1,3 +1,4 @@
+import { Product } from "../food/Product.js";
 import { OrderItem } from "./OrderItem.js";
 import { OrderState } from "./OrderState.js";
 import { DeliveredOrder } from "./states/DeliveredOrder.js";
@@ -42,14 +43,37 @@ export class OrderContext {
         this.state.transitionState();
     }
 
-    public addItem(item: OrderItem): void {
+    public addItem(
+        food: Product,
+        amount: number,
+        unitPrice: number,
+        note = ""
+    ): void {
         if (this.state instanceof OrderBeingMade) {
-            this.items.push(item);
+            this.items.push(new OrderItem(food, amount, unitPrice, note));
         } else {
             console.log(
                 "Não é possível adicionar mais itens pois o pedido já foi finalizado!"
             );
         }
+    }
+
+    public removeItem(item: OrderItem): void {
+        const index = this.items.indexOf(item);
+
+        if (index !== -1) {
+            this.items.splice(index, 1);
+        }
+    }
+
+    public getItems(): OrderItem[] {
+        return this.items;
+    }
+
+    public getTotalPrice(): number {
+        return this.items.reduce((total, orderItem) => {
+            return total + orderItem.getSubTotal();
+        }, 0);
     }
 
     public finishOrder(): void {

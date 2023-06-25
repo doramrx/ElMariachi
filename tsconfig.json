@@ -1,17 +1,25 @@
 {
-    "compilerOptions": {
-        "target": "ES2020" /* Set the JavaScript language version for emitted JavaScript and include */,
-        "module": "ESNext" /* Specify what module code is generated. */,
-        "rootDir": "./src" /* Specify the root folder within your source files. */,
-        "outDir": "./dist" /* Specify an output folder for all emitted files. */,
-        "removeComments": true /* Disable emitting comments. */,
-        "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
-        "strict": true /* Enable all strict type-checking options. */,
-        "noImplicitAny": true /* Enable error reporting for expressions and declarations with an implied 'any' type. */,
-        "strictNullChecks": true /* When type checking, take into account 'null' and 'undefined'. */,
-        "strictPropertyInitialization": true /* Check for class properties that are declared but not set in the constructor. */,
-        "noImplicitThis": true /* Enable error reporting when 'this' is given the type 'any'. */,
-        "alwaysStrict": true /* Ensure 'use strict' is always emitted. */,
-        "skipLibCheck": false /* Skip type checking all .d.ts files. */
-    }
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

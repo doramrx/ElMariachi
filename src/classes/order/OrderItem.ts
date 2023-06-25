@@ -1,10 +1,8 @@
-import { Food } from "../food/Food.js";
-import { Sauce } from "../food/Sauce.js";
+import { Product } from "../food/Product.js";
 
 export class OrderItem {
     constructor(
-        private food: Food,
-        private sauce: Sauce,
+        private food: Product,
         private amount: number,
         private unitPrice: number,
         private note?: string
@@ -14,10 +12,13 @@ export class OrderItem {
         return this.amount * this.unitPrice;
     }
 
+    getFoodName(): string {
+        return this.food.getName();
+    }
+
     toString(): string {
         return `OrderItem {
             \t  food: ${this.food.getName()},
-            \t  sauce: ${this.sauce.getName()},
             \t  amount: ${this.amount},
             \t  unitPrice: ${this.unitPrice},
             \t  subTotal: ${this.getSubTotal()},

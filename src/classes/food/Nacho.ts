@@ -11,8 +11,9 @@ export class Nacho extends Food {
         protein: string,
         ingredients: string[],
         price: number,
-        private type: NachoTypes
+        private type: NachoTypes,
+        imgUrl: string
     ) {
-        super(name, protein, ingredients, price);
+        super(name, protein, ingredients, price, imgUrl);
     }
 }

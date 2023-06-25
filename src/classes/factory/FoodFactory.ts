@@ -6,6 +6,7 @@ export interface FoodFactory {
         protein: string,
         ingredients: string[],
         price: number,
+        imgUrl: string,
         options?: Record<string, string>
     ): Food;
 }

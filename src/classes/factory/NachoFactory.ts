@@ -8,11 +8,12 @@ export class NachoFactory implements FoodFactory {
         protein: string,
         ingredients: string[],
         price: number,
+        imgUrl: string,
         additionals?: Record<string, string>
     ): Food {
         const nachoType =
             (additionals?.nachoType as NachoTypes) || NachoTypes.Simples;
 
-        return new Nacho(name, protein, ingredients, price, nachoType);
+        return new Nacho(name, protein, ingredients, price, nachoType, imgUrl);
     }
 }

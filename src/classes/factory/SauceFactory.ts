@@ -6,14 +6,16 @@ export class SauceFactory {
         ingredients: string[],
         price: number,
         quantityInMililiters: number,
-        isSpicy: boolean = false
+        imgUrl: string,
+        isSpicy = false
     ) {
         return new Sauce(
             name,
             ingredients,
             price,
             quantityInMililiters,
-            isSpicy
+            isSpicy,
+            imgUrl
         );
     }
 }

@@ -5,17 +5,10 @@ export abstract class Food extends Product {
         name: string,
         private protein: string,
         ingredients: string[],
-        price: number
+        price: number,
+        imgUrl: string
     ) {
-        super(name, price, ingredients);
-    }
-
-    getName(): string {
-        return super.name;
-    }
-
-    getPrice(): number {
-        return super.price;
+        super(name, price, ingredients, imgUrl);
     }
 
     addIngredient(ingredient: string) {

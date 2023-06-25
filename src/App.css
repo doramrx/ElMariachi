@@ -1,0 +1,260 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+#page header {
+    background-color: #ffad40;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#page main {
+    display: flex;
+    flex-direction: row;
+}
+
+#page main div#col-a {
+    flex: 2.3;
+    padding: 80px 80px;
+}
+
+#page main div#col-a h1 {
+    margin-bottom: 30px;
+    font-weight: 500;
+    color: red;
+    font-size: 32px;
+}
+
+#page main div#col-a section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#page main div#col-a section button {
+    color: red;
+    background-color: transparent;
+    border: 1px solid red;
+    border-radius: 10px;
+    flex: 1 1 180px;
+    padding: 20px 0px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#page main div#col-a section button:hover {
+    color: white;
+    background-color: red;
+}
+
+#page main div#col-a section button.active {
+    color: white;
+    background-color: red;
+}
+
+#page main div#col-a > ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 6px;
+}
+
+#page main div#col-a > ul #menu-item {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #c0c0c0;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px #dfdfdf;
+    overflow: hidden;
+}
+
+#page main div#col-a > ul #menu-item img {
+    width: 100%;
+    height: 200px;
+}
+
+#page main div#col-a > ul #menu-item div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+#page main div#col-a > ul #menu-item div strong {
+    text-align: center;
+    font-size: 22px;
+    align-self: center;
+}
+
+#page main div#col-a > ul #menu-item div #menu-item-ingredients {
+    max-width: 80%;
+    padding-left: 16px;
+    overflow: auto;
+}
+
+#page main div#col-a > ul #menu-item div #menu-item-price {
+    align-self: flex-end;
+    padding-right: 22px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #32d400;
+}
+
+#page main div#col-a > ul #menu-item div button {
+    align-self: center;
+    width: 80%;
+    padding: 7px 30px;
+    font-size: 24px;
+    background-color: #ffad40;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+}
+
+#page main div#col-a ul #menu-item div button:hover {
+    color: white;
+    background-color: #d88c29;
+}
+
+#page main div#col-b {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 80px 50px;
+    background-color: #f1f1f1;
+    position: relative;
+}
+
+#page main div#col-b h2 {
+    align-self: flex-start;
+    margin-bottom: 30px;
+    font-size: 32px;
+    font-weight: 500;
+}
+
+#page main div#col-b ul {
+    max-height: 50%;
+    overflow: auto;
+}
+
+#page main div#col-b ul li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 30px;
+    font-size: 22px;
+}
+
+#page main div#col-b ul li img {
+    width: 50px;
+}
+
+#page main div#col-b ul li button {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid red;
+    color: red;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+#page main div#col-b p {
+    margin-top: 20px;
+    font-size: 32px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 40px;
+    gap: 30px;
+}
+
+#page main div#col-b p span#total {
+    font-weight: 600;
+    color: #32d400;
+}
+
+#page main div#col-b #order-actions-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+#page main div#col-b button.finish-order {
+    width: 270px;
+    font-size: 26px;
+    padding: 10px 0;
+    background-color: #ffad40;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+#page main div#col-b button.finish-order:hover {
+    color: white;
+    font-weight: 500;
+    background-color: #d88c29;
+    cursor: pointer;
+}
+
+#page main div#col-b button.new-order,
+#page main div#col-b button.pay-order {
+    width: 270px;
+    font-size: 26px;
+    padding: 10px 0;
+    background-color: #32d400;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+#page main div#col-b button.new-order:hover,
+#page main div#col-b button.pay-order:hover {
+    color: white;
+    font-weight: 500;
+    background-color: #2bac04;
+    cursor: pointer;
+}
+
+#menu-item-ingredients {
+    color: #777;
+    font-size: 15px;
+    height: 40px;
+}
+
+#order-status-container {
+    display: flex;
+    background-color: white;
+    padding: 20px 40px;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+#order-current-status {
+    margin-left: 10px;
+}
+
+@media only screen and (max-width: 1090px) {
+    #page main div#col-a section {
+        flex-direction: column;
+        align-items: normal;
+    }
+
+    #page main div#col-a section button {
+        flex: 1;
+    }
+}

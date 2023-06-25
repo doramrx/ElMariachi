@@ -7,8 +7,9 @@ export class TacoFactory implements FoodFactory {
         name: string,
         protein: string,
         ingredients: string[],
-        price: number
+        price: number,
+        imgUrl: string
     ): Food {
-        return new Taco(name, protein, ingredients, price);
+        return new Taco(name, protein, ingredients, price, imgUrl);
     }
 }
