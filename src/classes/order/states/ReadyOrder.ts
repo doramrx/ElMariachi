@@ -15,6 +15,6 @@ export class ReadyOrder implements OrderState {
     }
 
     cancelOrder(): void {
-        this.context.setState(new CancelOrder(this.context));
+        console.log("Não é possível cancelar o pedido!");
     }
 }

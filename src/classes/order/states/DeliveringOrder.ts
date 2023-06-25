@@ -1,7 +1,7 @@
 import { OrderContext } from "../OrderContext.js";
 import { OrderState } from "../OrderState.js";
 import { CancelOrder } from "./CancelOrder.js";
-import { DeliveredOrder } from "./DeliveredOrder.js";
+import { OrderDelivered } from "./OrderDelivered.js";
 
 export class DeliveringOrder implements OrderState {
     constructor(private context: OrderContext) {}
@@ -11,11 +11,11 @@ export class DeliveringOrder implements OrderState {
     }
 
     transitionState(): void {
-        this.context.setState(new DeliveredOrder(this.context));
+        this.context.setState(new OrderDelivered(this.context));
         this.context.setFinishDate(new Date());
     }
 
     cancelOrder(): void {
-        this.context.setState(new CancelOrder(this.context));
+        console.log("Não é possível cancelar o pedido!");
     }
 }

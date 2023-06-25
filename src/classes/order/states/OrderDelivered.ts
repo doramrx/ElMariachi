@@ -1,7 +1,7 @@
 import { OrderContext } from "../OrderContext.js";
 import { OrderState } from "../OrderState.js";
 
-export class DeliveredOrder implements OrderState {
+export class OrderDelivered implements OrderState {
     constructor(private context: OrderContext) {}
 
     getStateName(): string {

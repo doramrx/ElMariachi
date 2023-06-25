@@ -1,7 +1,7 @@
 import { Product } from "../food/Product.js";
 import { OrderItem } from "./OrderItem.js";
 import { OrderState } from "./OrderState.js";
-import { DeliveredOrder } from "./states/DeliveredOrder.js";
+import { OrderDelivered } from "./states/OrderDelivered.js";
 import { OrderBeingMade } from "./states/OrderBeingMade.js";
 
 export class OrderContext {
@@ -26,7 +26,7 @@ export class OrderContext {
     }
 
     public setFinishDate(finishAt: Date): void {
-        if (this.state instanceof DeliveredOrder) {
+        if (this.state instanceof OrderDelivered) {
             this.finishAt = finishAt;
         }
     }
@@ -93,6 +93,18 @@ export class OrderContext {
             minute: "numeric",
             second: "numeric",
         });
+    }
+
+    public getCreatedAt(): Date | undefined {
+        if (this.createdAt) {
+            return this.createdAt;
+        }
+    }
+
+    public getFinishedAt(): Date | undefined {
+        if (this.finishAt) {
+            return this.finishAt;
+        }
     }
 
     public toString(): string {

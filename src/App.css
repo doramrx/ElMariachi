@@ -21,6 +21,7 @@ ul {
 #page main {
     display: flex;
     flex-direction: row;
+    height: 100%;
 }
 
 #page main div#col-a {
@@ -133,7 +134,7 @@ ul {
     display: flex;
     flex-direction: column;
     padding: 20px 20px 80px;
-    background-color: #f1f1f1;
+    /* background-color: #f1f1f1; */
     position: relative;
 }
 
@@ -166,12 +167,12 @@ ul {
     font-size: 18px;
 }
 
-#page main div#col-b ul li span:nth-child(3) {
+#page main div#col-b ul li span:nth-child(2) {
     flex: 3;
 }
 
-#page main div#col-b ul li span:nth-child(4) {
-    flex: 1.5;
+#page main div#col-b ul li span:nth-child(3) {
+    flex: 1;
 }
 
 #page main div#col-b ul li button {
@@ -199,46 +200,51 @@ ul {
 
 #page main div#col-b #order-actions-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px 0;
 }
 
-#page main div#col-b button.finish-order {
+#page main div#col-b #order-actions-container button {
     width: 270px;
     font-size: 26px;
     padding: 10px 0;
-    background-color: #ffad40;
     border: none;
     border-radius: 10px;
     color: white;
-}
-
-#page main div#col-b button.finish-order:hover {
-    color: white;
-    font-weight: 500;
-    background-color: #d88c29;
     cursor: pointer;
 }
 
-#page main div#col-b button.new-order,
-#page main div#col-b button.pay-order {
-    width: 270px;
-    font-size: 26px;
-    padding: 10px 0;
+#page main div#col-b #order-actions-container button:hover {
+    font-weight: 500;
+}
+
+#page main div#col-b #order-actions-container button.finish-order {
+    background-color: #ffad40;
+}
+
+#page main div#col-b #order-actions-container button.finish-order:hover {
+    background-color: #d88c29;
+}
+
+#page main div#col-b #order-actions-container button.new-order,
+#page main div#col-b #order-actions-container button.pay-order {
     background-color: #32d400;
-    border: none;
-    border-radius: 10px;
-    color: white;
     margin-bottom: 10px;
 }
 
-#page main div#col-b button.new-order:hover,
-#page main div#col-b button.pay-order:hover {
-    color: white;
-    font-weight: 500;
+#page main div#col-b #order-actions-container button.new-order:hover,
+#page main div#col-b #order-actions-container button.pay-order:hover {
     background-color: #2bac04;
-    cursor: pointer;
+}
+
+#page main div#col-b #order-actions-container button.cancel-order {
+    background-color: rgb(255, 110, 110);
+}
+
+#page main div#col-b #order-actions-container button.cancel-order:hover {
+    background-color: rgb(255, 81, 81);
 }
 
 #menu-item-ingredients {
@@ -254,6 +260,19 @@ ul {
     padding: 20px 40px;
     border-radius: 10px;
     border: 1px solid gray;
+}
+
+#order-info-container {
+    margin-top: 12px;
+    align-self: center;
+}
+
+#order-info-container > div:last-child {
+    margin-top: 10px;
+}
+
+#order-info-container > div b {
+    margin-right: 8px;
 }
 
 #order-current-status {

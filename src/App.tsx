@@ -10,7 +10,8 @@ import { OrderState } from "./classes/order/OrderState";
 import { OrderItem } from "./classes/order/OrderItem";
 import { WaitingPayment } from "./classes/order/states/WaitingPayment";
 import { OrderBeingMade } from "./classes/order/states/OrderBeingMade";
-import { DeliveredOrder } from "./classes/order/states/DeliveredOrder";
+import { OrderDelivered } from "./classes/order/states/OrderDelivered";
+import { CancelOrder } from "./classes/order/states/CancelOrder";
 
 type MenuOptions = "Burrito" | "Nacho" | "Taco" | "Molho";
 
@@ -23,6 +24,7 @@ function App() {
     const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
     const [activeMenu, setActiveMenu] = useState<MenuOptions>("Burrito");
     const [menu, setMenu] = useState<Product[]>(wholeMenu.getBurritos());
+    const [isCancelButtonVisible, setIsCancelButtonVisible] = useState(false);
 
     function changeMenu(menuOption: MenuOptions, menu: Product[]) {
         setActiveMenu(menuOption);
@@ -44,8 +46,14 @@ function App() {
         setCurrentState(() => orderContext.current.getState());
     }
 
+    function handleFinishOrder() {
+        changeOrderState();
+        setIsCancelButtonVisible(true);
+    }
+
     function handlePayOrder() {
         changeOrderState();
+        setIsCancelButtonVisible(false);
     }
 
     function handleNewOrder() {
@@ -54,22 +62,31 @@ function App() {
         setOrderItems([]);
     }
 
+    function handleCancelOrder() {
+        orderContext.current.cancelOrder();
+        setCurrentState(() => {
+            const nextState = orderContext.current.getState();
+            return nextState;
+        });
+        setIsCancelButtonVisible(false);
+    }
+
     useEffect(() => {
         // eslint-disable-next-line prefer-const
         let interval: number | undefined;
 
         if (
             currentState instanceof OrderBeingMade ||
-            currentState instanceof WaitingPayment
+            currentState instanceof WaitingPayment ||
+            currentState instanceof CancelOrder
         ) {
             return;
         }
 
-        if (currentState instanceof DeliveredOrder) {
+        if (currentState instanceof OrderDelivered) {
             return clearInterval(interval);
         }
 
-        // eslint-disable-next-line prefer-const
         interval = setInterval(() => {
             orderContext.current.transitionState();
 
@@ -111,6 +128,28 @@ function App() {
                             {orderContext.current.getState().getStateName()}
                         </span>
                     </div>
+                    <div id="order-info-container">
+                        {orderContext.current.getCreatedAt() && (
+                            <div>
+                                <b>Feito em:</b>
+                                <span>
+                                    {orderContext.current
+                                        .getCreatedAt()
+                                        ?.toLocaleString("pt-BR")}
+                                </span>
+                            </div>
+                        )}
+                        {orderContext.current.getFinishedAt() && (
+                            <div>
+                                <b>Finalizado em:</b>
+                                <span>
+                                    {orderContext.current
+                                        .getFinishedAt()
+                                        ?.toLocaleString("pt-BR")}
+                                </span>
+                            </div>
+                        )}
+                    </div>
                     <h2>Pedido</h2>
                     <OrderList
                         items={orderItems}
@@ -133,7 +172,7 @@ function App() {
                             OrderBeingMade &&
                             orderItems.length > 0 && (
                                 <button
-                                    onClick={changeOrderState}
+                                    onClick={handleFinishOrder}
                                     className="finish-order"
                                 >
                                     Finalizar Pedido
@@ -148,13 +187,23 @@ function App() {
                                 Realizar Pagamento
                             </button>
                         )}
-                        {orderContext.current.getState() instanceof
-                            DeliveredOrder && (
+                        {(orderContext.current.getState() instanceof
+                            OrderDelivered ||
+                            orderContext.current.getState() instanceof
+                                CancelOrder) && (
                             <button
                                 onClick={handleNewOrder}
                                 className="new-order"
                             >
                                 Novo pedido
+                            </button>
+                        )}
+                        {isCancelButtonVisible && (
+                            <button
+                                onClick={handleCancelOrder}
+                                className="cancel-order"
+                            >
+                                Cancelar pedido
                             </button>
                         )}
                     </div>
@@ -193,7 +242,6 @@ function OrderItemComponent(props: {
                 src="icon.png"
                 alt="Icone"
             />
-            <span>1x</span>
             <span>{props.item.getFoodName()}</span>
             <span id="order-item-price">
                 R$ {props.item.getSubTotal().toFixed(2).replace(".", ",")}
