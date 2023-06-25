@@ -60,7 +60,7 @@ const burrito1 = burritoFactory.makeFood(
     "Burrito California",
     "Carne assada",
     ["Batata frita", "Queijo mussarela", "Creme de abacate"],
-    38,
+    26,
     "burrito1.png"
 );
 
@@ -76,7 +76,7 @@ const burrito3 = burritoFactory.makeFood(
     "Burrito Tradicional",
     "Filé mignon",
     ["Tortilha de trigo", "Repolho Sweet Chilli", "Creme de abacate"],
-    38,
+    40,
     "burrito3.png"
 );
 
@@ -84,7 +84,7 @@ const burrito4 = burritoFactory.makeFood(
     "Burrito Tradicional 2",
     "Filé mignon",
     ["Tortilha de trigo", "Repolho Sweet Chilli", "Creme de abacate"],
-    38,
+    50,
     "burrito1.png"
 );
 
