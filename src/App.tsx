@@ -104,31 +104,41 @@ function App() {
                     />
                 </div>
                 <div id="col-b">
+                    <div id="order-status-container">
+                        <strong>Status do pedido:</strong>
+                        <span id="order-current-status">
+                            {" "}
+                            {orderContext.current.getState().getStateName()}
+                        </span>
+                    </div>
                     <h2>Pedido</h2>
                     <OrderList
                         items={orderItems}
                         removeOrderItemFn={removeOrderItem}
                     />
-                    <p>
-                        <span>Total</span>
-                        <span id="total">
-                            R${" "}
-                            {orderContext.current
-                                .getTotalPrice()
-                                .toFixed(2)
-                                .replace(".", ",")}
-                        </span>
-                    </p>
+                    {orderItems.length > 0 && (
+                        <p>
+                            <span>Total</span>
+                            <span id="total">
+                                R${" "}
+                                {orderContext.current
+                                    .getTotalPrice()
+                                    .toFixed(2)
+                                    .replace(".", ",")}
+                            </span>
+                        </p>
+                    )}
                     <div id="order-actions-container">
                         {orderContext.current.getState() instanceof
-                            OrderBeingMade && (
-                            <button
-                                onClick={changeOrderState}
-                                className="finish-order"
-                            >
-                                Finalizar Pedido
-                            </button>
-                        )}
+                            OrderBeingMade &&
+                            orderItems.length > 0 && (
+                                <button
+                                    onClick={changeOrderState}
+                                    className="finish-order"
+                                >
+                                    Finalizar Pedido
+                                </button>
+                            )}
                         {orderContext.current.getState() instanceof
                             WaitingPayment && (
                             <button
@@ -147,13 +157,6 @@ function App() {
                                 Novo pedido
                             </button>
                         )}
-                    </div>
-                    <div id="order-status-container">
-                        <strong>Status do pedido:</strong>
-                        <span id="order-current-status">
-                            {" "}
-                            {orderContext.current.getState().getStateName()}
-                        </span>
                     </div>
                 </div>
             </main>
@@ -192,7 +195,9 @@ function OrderItemComponent(props: {
             />
             <span>1x</span>
             <span>{props.item.getFoodName()}</span>
-            <span>R$ {props.item.getSubTotal()}</span>
+            <span id="order-item-price">
+                R$ {props.item.getSubTotal().toFixed(2).replace(".", ",")}
+            </span>
             <button onClick={() => props.removeOrderItemFn(props.item)}>
                 Remover
             </button>
